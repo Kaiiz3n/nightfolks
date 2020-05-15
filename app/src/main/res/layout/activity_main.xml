@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="64dp"
+        android:orientation="vertical"
+        android:paddingLeft="48dp"
+        android:paddingRight="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/join_as"
+            android:layout_width="147dp"
+            android:layout_height="66dp"
+            android:layout_gravity="center"
+            android:contentDescription="Join As"
+            android:scaleType="fitXY"
+            android:src="@drawable/join_as" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/asDj_btn"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:shadowColor="#00575555"
+            android:text="@string/dj"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            android:textColor="#2962FF"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            app:icon="@drawable/ic_dj"
+            app:iconSize="48dp"
+            app:iconTint="@null"
+            app:rippleColor="@color/colorSkyBlue" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/partyGuru_btn"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:shadowColor="#00575555"
+            android:text="@string/partyGuru"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            android:textColor="#2962FF"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            app:icon="@drawable/ic_partyguru"
+            app:iconSize="48dp"
+            app:iconTint="@null"
+            app:rippleColor="@color/colorSkyBlue" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/startScreen_img"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/nightfolks_party"
+            android:layout_width="415dp"
+            android:layout_height="298dp"
+            android:layout_gravity="center"
+            android:contentDescription="Boot Screen"
+            android:scaleType="fitXY"
+            android:src="@drawable/party_blue" />
+
+        <ImageView
+            android:id="@+id/nightfolks_logo"
+            android:layout_width="265dp"
+            android:layout_height="64dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/logo"
+            android:scaleType="fitXY"
+            android:src="@drawable/logo" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/copyrights"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
