@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".view.MainActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout4"
@@ -24,7 +24,7 @@
             android:layout_width="147dp"
             android:layout_height="66dp"
             android:layout_gravity="center"
-            android:contentDescription="Join As"
+            android:contentDescription="@string/join_as"
             android:scaleType="fitXY"
             android:src="@drawable/join_as" />
 
@@ -77,7 +77,7 @@
             android:layout_width="415dp"
             android:layout_height="298dp"
             android:layout_gravity="center"
-            android:contentDescription="Boot Screen"
+            android:contentDescription="@string/boot_screen"
             android:scaleType="fitXY"
             android:src="@drawable/party_blue" />
 
