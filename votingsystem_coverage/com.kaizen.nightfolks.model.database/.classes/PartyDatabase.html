@@ -1,0 +1,109 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: PartyDatabase</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.kaizen.nightfolks.model.database</a> ]
+</div>
+
+<h1>Coverage Summary for Class: PartyDatabase (com.kaizen.nightfolks.model.database)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PartyDatabase</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 5)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.kaizen.nightfolks.model.database;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import android.content.Context;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import androidx.room.Database;
+<i>6</i>&nbsp;import androidx.room.Room;
+<i>7</i>&nbsp;import androidx.room.RoomDatabase;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;import com.kaizen.nightfolks.model.entities.Party;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;@Database(entities = Party.class, version = 1)
+<b class="nc"><i>12</i>&nbsp;public abstract class PartyDatabase extends RoomDatabase {</b>
+<i>13</i>&nbsp;    private static final String DB_NAME = &quot;party_db&quot;;
+<i>14</i>&nbsp;    private static PartyDatabase instance;
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;    public static synchronized PartyDatabase getDatabase(final Context context) {
+<b class="nc"><i>17</i>&nbsp;        if (instance == null) {</b>
+<b class="nc"><i>18</i>&nbsp;            instance = Room.databaseBuilder(context.getApplicationContext(), PartyDatabase.class, DB_NAME)</b>
+<b class="nc"><i>19</i>&nbsp;                    .fallbackToDestructiveMigration().build();</b>
+<i>20</i>&nbsp;        }
+<b class="nc"><i>21</i>&nbsp;        return instance;</b>
+<i>22</i>&nbsp;    }
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;    public abstract PartyDao getPartyDao();
+<i>25</i>&nbsp;}
+<i>26</i>&nbsp;
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-06-02 15:18</div>
+</div>
+</body>
+</html>

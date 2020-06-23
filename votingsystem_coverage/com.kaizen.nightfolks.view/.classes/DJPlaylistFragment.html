@@ -1,0 +1,123 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: DJPlaylistFragment</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.kaizen.nightfolks.view</a> ]
+</div>
+
+<h1>Coverage Summary for Class: DJPlaylistFragment (com.kaizen.nightfolks.view)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">DJPlaylistFragment</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 12)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.kaizen.nightfolks.view;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import android.os.Bundle;
+<i>4</i>&nbsp;import android.view.LayoutInflater;
+<i>5</i>&nbsp;import android.view.View;
+<i>6</i>&nbsp;import android.view.ViewGroup;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;import androidx.annotation.NonNull;
+<i>9</i>&nbsp;import androidx.fragment.app.Fragment;
+<i>10</i>&nbsp;import androidx.recyclerview.widget.DividerItemDecoration;
+<i>11</i>&nbsp;import androidx.recyclerview.widget.LinearLayoutManager;
+<i>12</i>&nbsp;import androidx.recyclerview.widget.RecyclerView;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;import com.kaizen.nightfolks.controller.music.Song;
+<i>15</i>&nbsp;import com.kaizen.nightfolks.controller.music.adapters.SongsAdapter;
+<i>16</i>&nbsp;import com.kaizen.nightfolks.databinding.DjPlaylistFragmentBinding;
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;import java.util.ArrayList;
+<i>19</i>&nbsp;
+<b class="nc"><i>20</i>&nbsp;public class DJPlaylistFragment extends Fragment {</b>
+<i>21</i>&nbsp;    ArrayList&lt;Song&gt; songs;
+<i>22</i>&nbsp;
+<i>23</i>&nbsp;    @Override
+<i>24</i>&nbsp;    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+<b class="nc"><i>25</i>&nbsp;        DjPlaylistFragmentBinding djPlayListFragmentBinding = DjPlaylistFragmentBinding</b>
+<b class="nc"><i>26</i>&nbsp;                .inflate(inflater, container, false);</b>
+<b class="nc"><i>27</i>&nbsp;        RecyclerView rvSongs = djPlayListFragmentBinding.rvSongs;</b>
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;        //RecyclerView Configuration
+<b class="nc"><i>30</i>&nbsp;        rvSongs.setHasFixedSize(true);</b>
+<b class="nc"><i>31</i>&nbsp;        RecyclerView.ItemDecoration itemDivider = new DividerItemDecoration(getActivity(),</b>
+<i>32</i>&nbsp;                DividerItemDecoration.VERTICAL);
+<b class="nc"><i>33</i>&nbsp;        rvSongs.addItemDecoration(itemDivider);</b>
+<b class="nc"><i>34</i>&nbsp;        songs = Song.createSongsList();</b>
+<b class="nc"><i>35</i>&nbsp;        SongsAdapter songsAdapter = new SongsAdapter(songs);</b>
+<b class="nc"><i>36</i>&nbsp;        rvSongs.setAdapter(songsAdapter);</b>
+<b class="nc"><i>37</i>&nbsp;        rvSongs.setLayoutManager(new LinearLayoutManager(getActivity()));</b>
+<b class="nc"><i>38</i>&nbsp;        return djPlayListFragmentBinding.getRoot();</b>
+<i>39</i>&nbsp;    }
+<i>40</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-06-02 15:18</div>
+</div>
+</body>
+</html>
