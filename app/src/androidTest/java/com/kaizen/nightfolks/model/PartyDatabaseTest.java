@@ -58,6 +58,4 @@ public class PartyDatabaseTest {
         Party party = partyDao.getPartyList().get(0);
         assertTrue(TestUtils.areDateClose(Calendar.getInstance().getTime(), party.getDate()));
     }
-
-
 }
