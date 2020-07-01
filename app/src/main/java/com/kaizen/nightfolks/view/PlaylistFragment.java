@@ -11,30 +11,41 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.kaizen.nightfolks.controller.music.Song;
 import com.kaizen.nightfolks.controller.music.adapters.SongsAdapter;
-import com.kaizen.nightfolks.databinding.DjPlaylistFragmentBinding;
+import com.kaizen.nightfolks.databinding.PlaylistFragmentBinding;
+import com.kaizen.nightfolks.model.entities.Playlist;
 
-import java.util.ArrayList;
+import org.apache.commons.lang3.StringUtils;
 
-public class DJPlaylistFragment extends Fragment {
-    ArrayList<Song> songs;
+import java.util.Objects;
+
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
+public class PlaylistFragment extends Fragment {
+    public static final String PARTYGURU = "guru";
+    private Playlist songs;
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        DjPlaylistFragmentBinding djPlayListFragmentBinding = DjPlaylistFragmentBinding
+        PlaylistFragmentBinding playListFragmentBinding = PlaylistFragmentBinding
                 .inflate(inflater, container, false);
-        RecyclerView rvSongs = djPlayListFragmentBinding.rvSongs;
-
+        RecyclerView rvSongs = playListFragmentBinding.rvSongs;
         //RecyclerView Configuration
         rvSongs.setHasFixedSize(true);
         RecyclerView.ItemDecoration itemDivider = new DividerItemDecoration(getActivity(),
                 DividerItemDecoration.VERTICAL);
         rvSongs.addItemDecoration(itemDivider);
-        songs = Song.createSongsList();
-        SongsAdapter songsAdapter = new SongsAdapter(songs);
+        songs = Playlist.createSongsList();
+        String caller = Objects.requireNonNull(getActivity()).getIntent().getExtras().getString("caller");
+        int voteVisibility = GONE;
+        if (StringUtils.equals(caller, PARTYGURU)) {
+            voteVisibility = VISIBLE;
+        }
+        SongsAdapter songsAdapter = new SongsAdapter(songs.getSongs(), voteVisibility);//Placeholder
         rvSongs.setAdapter(songsAdapter);
         rvSongs.setLayoutManager(new LinearLayoutManager(getActivity()));
-        return djPlayListFragmentBinding.getRoot();
+        return playListFragmentBinding.getRoot();
     }
 }

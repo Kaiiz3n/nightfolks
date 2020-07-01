@@ -17,6 +17,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.Calendar;
+import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
@@ -42,8 +43,8 @@ public class PartyDatabaseTest {
     public void writePartyAndReadShouldReturnCorrectParty() {
         TestUtils.populateDb(db, 1);
         Party party = partyDao.getPartyList().get(0);
-        Party byHost = partyDao.getPartyByHost("Kaiz3n");
-        assertEquals(byHost, party);
+        List<Party> byHost = partyDao.getPartiesByHost("Kaiz3n");
+        assertEquals(byHost.get(0), party);
     }
 
     @Test

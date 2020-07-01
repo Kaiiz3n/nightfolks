@@ -17,40 +17,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/name_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/name_text"
-        app:fontFamily="@font/aldrich"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcome_dj" />
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/party_name_layout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="2dp"
+        android:layout_height="wrap_content"
         app:errorEnabled="true"
-        app:layout_constraintTop_toBottomOf="@+id/name_label"
-        tools:layout_editor_absoluteX="16dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcome_dj">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/party_name"
             android:layout_width="match_parent"
-            android:layout_height="36dp"
+            android:layout_height="match_parent"
             android:gravity="center"
-            android:hint="@string/party_name"
-            android:inputType="text" />
+            android:hint="@string/name_text"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:singleLine="true" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <ScrollView
+        android:id="@+id/playlist_scroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/createPartyBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -61,15 +52,15 @@
 
             <fragment
                 android:id="@+id/playlist_fragment"
-                android:name="com.kaizen.nightfolks.view.DJPlaylistFragment"
+                android:name="com.kaizen.nightfolks.view.PlaylistFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:layout="@layout/dj_playlist_fragment" />
+                tools:layout="@layout/playlist_fragment" />
         </LinearLayout>
     </ScrollView>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/createPartyBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -85,6 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/playlist_scroll"
         app:layout_constraintTop_toBottomOf="@+id/party_name_layout"
         tools:layout_editor_absoluteX="16dp">
 
@@ -93,7 +85,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/music_genre"
+            android:text="@string/music_genres"
             app:fontFamily="@font/aldrich" />
 
         <com.google.android.material.chip.ChipGroup
@@ -101,10 +93,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:singleSelection="true">
+            app:singleSelection="false">
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/hiphop_genre"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/hiphop"
@@ -112,20 +105,26 @@
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/house_genre"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/house"
+                android:textColorHighlight="#EEFFFFFF"
+                android:textColorLink="@color/design_default_color_background"
                 app:chipBackgroundColor="#00C853" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/electro_genre"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/electro"
+                android:textColorHighlight="#FFFFFF"
                 app:chipBackgroundColor="#DD2C00" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/trance_genre"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/trance"
@@ -133,16 +132,18 @@
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/trap_genre"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/trap_music"
                 app:chipBackgroundColor="#FF9100" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/multi_genre"
+                android:id="@+id/other_genre"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/multi"
+                android:text="@string/other_genre"
                 android:textColor="#FFFFFF"
                 app:chipBackgroundColor="#121111" />
         </com.google.android.material.chip.ChipGroup>

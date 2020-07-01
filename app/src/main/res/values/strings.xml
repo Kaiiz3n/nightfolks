@@ -10,13 +10,17 @@
     <string name="party_name">Party Name</string>
     <string name="party_type">Party Type</string>
     <string name="welcome_dj">Hey Dj! You are about to create a party ! Make it memorable</string>
-    <string name="music_genre">Music genre</string>
+    <string name="music_genres">Music genres</string>
     <string name="letsgo">Let\'s Go</string>
     <string name="hiphop">Hip Hop</string>
     <string name="house">House</string>
     <string name="electro">Electro</string>
     <string name="trance">Trance</string>
-    <string name="multi">Multi-Genre</string>
+    <string name="other_genre">Other</string>
     <string name="trap_music">Trap Music</string>
     <string name="name_text">"Start by giving it a cool name "</string>
+    <string name="history">History</string>
+    <string name="date">Date</string>
+    <string name="vote_btn_text">Hell Yeah !</string>
+    <string name="join_party_btn">Join Party</string>
 </resources>

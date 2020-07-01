@@ -1,7 +1,7 @@
-package com.kaizen.nightfolks.controller.votingsystem.voteObjects;
+package com.kaizen.nightfolks.controller.votingSystem.voteObjects;
 
-import com.kaizen.nightfolks.controller.votingsystem.IVoteObject;
-import com.kaizen.nightfolks.controller.votingsystem.SortPolicy;
+import com.kaizen.nightfolks.controller.votingSystem.IVoteObject;
+import com.kaizen.nightfolks.controller.votingSystem.SortPolicy;
 
 public class VoteInteger implements IVoteObject<Integer> {
     int votes;

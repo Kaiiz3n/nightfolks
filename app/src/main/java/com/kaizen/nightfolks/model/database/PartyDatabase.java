@@ -16,7 +16,7 @@ public abstract class PartyDatabase extends RoomDatabase {
     public static synchronized PartyDatabase getDatabase(final Context context) {
         if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(), PartyDatabase.class, DB_NAME)
-                    .fallbackToDestructiveMigration().build();
+                    .build();
         }
         return instance;
     }

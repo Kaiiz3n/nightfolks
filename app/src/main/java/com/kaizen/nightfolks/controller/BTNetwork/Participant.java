@@ -9,12 +9,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -26,16 +29,18 @@ import java.util.UUID;
 
 
 public class Participant implements IParticipant {
+    String id;
     private static final int REQUEST_ENABLE_BT = 1;
     private static final String TAG = "ParticipantActivity";
     private BluetoothAdapter mAdapter;
-    Context mContext;
-    public Set<BluetoothDevice> mBTDevices = new HashSet<>();
+    private final Context mContext;
+    private Set<BluetoothDevice> mBTDevices = new HashSet<>();
     private BluetoothDevice pairedDevice;
     private BTConnectionService btConnectionService;
     private List<String> mMessages;
 
-    public Participant(Context context) {
+    public Participant(final Context context, String id) {
+        this.id = id;
         this.mContext = context;
         this.mAdapter = BluetoothAdapter.getDefaultAdapter();
         this.pairedDevice = null;
@@ -71,23 +76,14 @@ public class Participant implements IParticipant {
         if (this.mAdapter.isDiscovering()) {
             this.mAdapter.cancelDiscovery();
             Log.d(TAG, "Discover: Canceling discovery.");
-
-            //check BT permissions in manifest
-            this.checkBTPermissions();
-
-            this.mAdapter.startDiscovery();
-            IntentFilter discoverDevicesIntent = new IntentFilter(BluetoothDevice.ACTION_FOUND);
-            this.mContext.registerReceiver(startDiscoveryBroadcastReceiver, discoverDevicesIntent);
         }
-        if (!this.mAdapter.isDiscovering()) {
+        //check BT permissions in manifest
+        this.checkBTPermissions();
 
-            //check BT permissions in manifest
-            this.checkBTPermissions();
-
-            this.mAdapter.startDiscovery();
-            IntentFilter discoverDevicesIntent = new IntentFilter(BluetoothDevice.ACTION_FOUND);
-            this.mContext.registerReceiver(startDiscoveryBroadcastReceiver, discoverDevicesIntent);
-        }
+        this.mAdapter.startDiscovery();
+        IntentFilter discoverDevicesIntent = new IntentFilter(BluetoothDevice.ACTION_FOUND);
+        LocalBroadcastManager.getInstance(mContext).registerReceiver(startDiscoveryBroadcastReceiver, discoverDevicesIntent);
+//            this.mContext.registerReceiver(startDiscoveryBroadcastReceiver, discoverDevicesIntent);
     }
 
     //TODO : this can be problematic and need to be implemented on the Activity Level
@@ -153,7 +149,7 @@ public class Participant implements IParticipant {
             }
         }
     };
-    private final BroadcastReceiver startDiscoveryBroadcastReceiver = new BroadcastReceiver() {
+    private BroadcastReceiver startDiscoveryBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             final String action = intent.getAction();
@@ -170,17 +166,21 @@ public class Participant implements IParticipant {
 
     @Override
     public void destroy() {
-        this.mContext.unregisterReceiver(enableBTBroadcastReceiver);
-        this.mContext.unregisterReceiver(discoverableBroadcastReceiver);
-        this.mContext.unregisterReceiver(startDiscoveryBroadcastReceiver);
-        this.mContext.unregisterReceiver(pairingBroadcastReceiver);
+        LocalBroadcastManager.getInstance(mContext).unregisterReceiver(enableBTBroadcastReceiver);
+        LocalBroadcastManager.getInstance(mContext).unregisterReceiver(discoverableBroadcastReceiver);
+        LocalBroadcastManager.getInstance(mContext).unregisterReceiver(startDiscoveryBroadcastReceiver);
+        LocalBroadcastManager.getInstance(mContext).unregisterReceiver(pairingBroadcastReceiver);
+//        this.mContext.unregisterReceiver(enableBTBroadcastReceiver);
+//        this.mContext.unregisterReceiver(discoverableBroadcastReceiver);
+//        this.mContext.unregisterReceiver(startDiscoveryBroadcastReceiver);
+//        this.mContext.unregisterReceiver(pairingBroadcastReceiver);
     }
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void checkBTPermissions() {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
-            int permissionCheck = this.mContext.checkSelfPermission("Manifest.permission.ACCESS_FINE_LOCAfTION");
+            int permissionCheck = this.mContext.checkSelfPermission("Manifest.permission.ACCESS_FINE_LOCATION");
             permissionCheck += this.mContext.checkSelfPermission("Manifest.permission.ACCESS_COARSE_LOCATION");
             if (permissionCheck != 0) {
                 String[] permissions = {
@@ -226,9 +226,10 @@ public class Participant implements IParticipant {
     @Override
     public void pairDevice(int i) {
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
-        this.mContext.registerReceiver(pairingBroadcastReceiver, filter);
+        LocalBroadcastManager.getInstance(mContext).registerReceiver(pairingBroadcastReceiver, filter);
+//        this.mContext.registerReceiver(pairingBroadcastReceiver, filter);
+//        this.mContext.registerReceiver(pairingBroadcastReceiver, filter);
         this.mAdapter.cancelDiscovery();
-
         //Should be changed , just when was running the prototype TODO
         Log.d(TAG, "onItemClick: You Clicked on a device.");
         String deviceName = mBTDevices.iterator().next().getName();
@@ -238,10 +239,9 @@ public class Participant implements IParticipant {
         Log.d(TAG, "onItemClick: deviceAddress = " + deviceAddress);
 
         //create the bond.
-        //NOTE: Requires API 17+? I think this is JellyBean
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR2) {
             Log.d(TAG, "Trying to pair with " + deviceName);
-            mBTDevices.iterator().next().createBond();
+            mBTDevices.iterator().next().createBond();//TODO change
         }
     }
 
@@ -252,7 +252,8 @@ public class Participant implements IParticipant {
         discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
         this.mContext.startActivity(discoverableIntent);
         IntentFilter intentFilter = new IntentFilter(BluetoothAdapter.ACTION_SCAN_MODE_CHANGED);
-        this.mContext.registerReceiver(discoverableBroadcastReceiver, intentFilter);
+        LocalBroadcastManager.getInstance(mContext).registerReceiver(discoverableBroadcastReceiver, intentFilter);
+//        this.mContext.registerReceiver(discoverableBroadcastReceiver, intentFilter);
     }
 
 //    @Override
@@ -324,5 +325,9 @@ public class Participant implements IParticipant {
         LocalBroadcastManager.getInstance(mContext)
                 .registerReceiver(msgReceiver, new IntentFilter("incomingMessage"));
         return mMessages.get(mMessages.size() - 1);
+    }
+
+    public String getId() {
+        return id;
     }
 }

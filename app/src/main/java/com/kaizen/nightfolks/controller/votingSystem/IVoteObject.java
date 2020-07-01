@@ -1,4 +1,4 @@
-package com.kaizen.nightfolks.controller.votingsystem;
+package com.kaizen.nightfolks.controller.votingSystem;
 
 public interface IVoteObject<ValueType> {
     /**

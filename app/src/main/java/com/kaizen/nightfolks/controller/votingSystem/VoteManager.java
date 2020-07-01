@@ -1,4 +1,4 @@
-package com.kaizen.nightfolks.controller.votingsystem;
+package com.kaizen.nightfolks.controller.votingSystem;
 
 import java.util.Collections;
 import java.util.Comparator;

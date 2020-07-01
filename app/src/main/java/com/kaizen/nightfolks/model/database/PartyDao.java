@@ -15,7 +15,7 @@ public interface PartyDao {
     List<Party> getPartyList();
 
     @Query("SELECT * FROM party WHERE host = :hostId")
-    Party getPartyByHost(String hostId);
+    List<Party> getPartiesByHost(String hostId);
 
     @Insert
     void insertParty(Party party);

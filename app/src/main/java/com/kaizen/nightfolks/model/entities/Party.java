@@ -11,11 +11,12 @@ import com.kaizen.nightfolks.model.converters.DateConverter;
 import java.sql.Date;
 import java.util.Calendar;
 
+//Complexity Reduced : No relationship between Party & Playlist yet
 @Entity(tableName = "party")
 @TypeConverters(DateConverter.class)
 public class Party {
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    private long id;
     @ColumnInfo(name = "name")
     private String name;
 
@@ -52,13 +53,13 @@ public class Party {
     }
 
     @Ignore
-    public Party(int id, String name) {
+    public Party(long id, String name) {
         this.id = id;
         this.name = name;
     }
 
     @Ignore
-    public Party(int id, Date date) {
+    public Party(long id, Date date) {
         this.id = id;
         this.date = date;
     }
@@ -69,7 +70,7 @@ public class Party {
         this.date = date;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -89,7 +90,7 @@ public class Party {
         return host;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

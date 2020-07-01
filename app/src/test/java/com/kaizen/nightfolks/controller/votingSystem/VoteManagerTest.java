@@ -1,9 +1,8 @@
-package com.kaizen.nightfolks.controller.votingsystem;
+package com.kaizen.nightfolks.controller.votingSystem;
 
-import com.kaizen.nightfolks.controller.votingsystem.voteObjects.VoteInteger;
+import com.kaizen.nightfolks.controller.votingSystem.voteObjects.VoteInteger;
 
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
 import java.util.Collections;
