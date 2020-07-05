@@ -1,12 +1,9 @@
 package com.kaizen.nightfolks.view;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 
 import com.kaizen.nightfolks.controller.BTNetwork.Participant;
 import com.kaizen.nightfolks.controller.utility.AppData;

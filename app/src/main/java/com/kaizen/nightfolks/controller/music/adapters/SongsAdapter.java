@@ -59,7 +59,6 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.ViewHolder> 
             @Override
             public void onClick(View v) {
                 holder.voteBtn.setEnabled(false);
-//                holder.voteBtn.setClickable(false);
             }
         });
     }

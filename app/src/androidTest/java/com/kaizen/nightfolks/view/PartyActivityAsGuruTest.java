@@ -1,15 +1,13 @@
 package com.kaizen.nightfolks.view;
 
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.test.espresso.action.ViewActions;
+import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
-import androidx.test.espresso.contrib.RecyclerViewActions;
 
 import com.kaizen.nightfolks.R;
 import com.kaizen.nightfolks.util.TestUtils;
-import com.kaizen.nightfolks.view.ScanForPartiesActivity;
 
 import org.junit.BeforeClass;
 import org.junit.Rule;
@@ -28,6 +26,7 @@ import static org.hamcrest.core.IsNot.not;
 public class PartyActivityAsGuruTest {
 
     @BeforeClass
+    // to disable bluetooth so that tests  work!Only a workaround  not the solution
     public static void setup() {
         ScanForPartiesActivity.setTest(true);
     }
@@ -45,11 +44,10 @@ public class PartyActivityAsGuruTest {
 
     @Test
     public void voteBtn_ShouldBeVisibleFromGuru() {
-
         //Accessing PartyActivity from ScanForActivity->Caller is Guru
         onView(withId(R.id.connectBtn)).perform(ViewActions.click());
 
-        //minimum 3 elements are needed in order
+        //minimum 3 elements are needed
         onView(withId(R.id.rvSongs))
                 .check(matches(atPosition(0, isDisplayed())));
         onView(withId(R.id.rvSongs))

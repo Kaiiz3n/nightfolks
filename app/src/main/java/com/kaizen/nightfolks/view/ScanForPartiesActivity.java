@@ -57,7 +57,7 @@ public class ScanForPartiesActivity extends AppCompatActivity {
 
     /**
      * only a place holder to connect to default device
-     * TODO
+     * User should be able to connect to any device that appears on a recyclerView : TODO
      */
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void connectToDefaultDevice() {
